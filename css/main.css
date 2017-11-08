@@ -1817,7 +1817,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff685;
+  background: #14bef9;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3027,6 +3027,9 @@ pre .javascript .function {
   border-radius: 50%;
   transition: transform 1s ease-out;
 }
+.category-all-page .category-list {
+  padding: 40px;
+}
 .posts-expand {
   padding-top: 0;
   background: #fff;
@@ -3039,7 +3042,4 @@ pre .javascript .function {
 }
 .comments {
   display: none !important;
-}
-.category-all-page .category-list {
-  padding: 40px;
 }
