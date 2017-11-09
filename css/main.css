@@ -1816,7 +1816,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8a249e;
+  background: #ff880d;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2715,9 +2715,6 @@ span.site-title {
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   margin-bottom: 20px;
   background: #fdfcf1;
-}
-.comments {
-  display: none !important;
 }
 .posts-collapse .collection-title {
   margin: 30px 0;
