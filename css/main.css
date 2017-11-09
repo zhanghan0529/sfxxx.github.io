@@ -1816,7 +1816,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ddff52;
+  background: #ffe047;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2679,15 +2679,18 @@ embed {
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
 }
+.container {
+  background: rgba(250,249,222,0.78);
+}
 .content-wrap,
 .header-inner,
 .sidebar,
 .sidebar-inner {
-  background: rgba(255,255,255,0.5);
   word-wrap: break-word;
 }
 .header-inner {
   padding: 80px 0 40px;
+  background: inherit;
 }
 span.site-title {
   font-size: 22px;
@@ -2697,20 +2700,27 @@ span.site-title {
   border-radius: 50%;
 }
 .category-all-page .category-list {
-  padding: 40px;
+  padding-right: 20px;
 }
 .posts-expand {
   padding-top: 0;
-  background: #fff;
 }
-.post {
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 3px;
+.content-wrap {
+  background: inherit;
+}
+.post,
+.page,
+.archive {
+  padding: 20px 40px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  background: #fdfcf1;
 }
 .comments {
   display: none !important;
+}
+.posts-collapse .collection-title {
+  margin: 30px 0;
 }
 .site-author-name {
   color: inherit;
