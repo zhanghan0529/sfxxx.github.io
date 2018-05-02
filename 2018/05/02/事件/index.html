@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.DOM0 事件和DOM2级在事件监听使用方式上有什么区别？DOM0:DOM0事件就是把一个方法赋值给一个元素的事件处理程序属性，每个元素都有自己的事件处理程序属性，这些属性名称通常为小写，如onclick等，将这些属性的值设置为一个函数，就可以指定事件处理程序，如下：1234567&amp;lt;li id  = &amp;apos;btn&amp;apos;&amp;gt;1&amp;lt;/li&amp;gt;&amp;lt;script&amp;gt">
+<meta name="keywords" content="前端,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件">
+<meta property="og:url" content="http://sfxxx.me/blog/2018/05/02/事件/index.html">
+<meta property="og:site_name" content="Zh&#39;s Blog">
+<meta property="og:description" content="1.DOM0 事件和DOM2级在事件监听使用方式上有什么区别？DOM0:DOM0事件就是把一个方法赋值给一个元素的事件处理程序属性，每个元素都有自己的事件处理程序属性，这些属性名称通常为小写，如onclick等，将这些属性的值设置为一个函数，就可以指定事件处理程序，如下：1234567&amp;lt;li id  = &amp;apos;btn&amp;apos;&amp;gt;1&amp;lt;/li&amp;gt;&amp;lt;script&amp;gt">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://video.jirengu.com/Fo3MeMe-P0hx17tybq6t6P1EPqZk">
+<meta property="og:image" content="http://video.jirengu.com/FkqZgZaEpycoAc4ogXqxX7JP1C7B">
+<meta property="og:updated_time" content="2018-05-02T06:58:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件">
+<meta name="twitter:description" content="1.DOM0 事件和DOM2级在事件监听使用方式上有什么区别？DOM0:DOM0事件就是把一个方法赋值给一个元素的事件处理程序属性，每个元素都有自己的事件处理程序属性，这些属性名称通常为小写，如onclick等，将这些属性的值设置为一个函数，就可以指定事件处理程序，如下：1234567&amp;lt;li id  = &amp;apos;btn&amp;apos;&amp;gt;1&amp;lt;/li&amp;gt;&amp;lt;script&amp;gt">
+<meta name="twitter:image" content="http://video.jirengu.com/Fo3MeMe-P0hx17tybq6t6P1EPqZk">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://sfxxx.me/blog/2018/05/02/事件/"/>
+
+
+
+
+
+  <title>事件 | Zh's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zh's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hello,world.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://sfxxx.me/blog/2018/05/02/事件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Han">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/avatar.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zh's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">事件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-02T14:34:17+08:00">
+                2018-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端开发/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-DOM0-事件和DOM2级在事件监听使用方式上有什么区别？"><a href="#1-DOM0-事件和DOM2级在事件监听使用方式上有什么区别？" class="headerlink" title="1.DOM0 事件和DOM2级在事件监听使用方式上有什么区别？"></a>1.DOM0 事件和DOM2级在事件监听使用方式上有什么区别？</h4><p><strong>DOM0</strong>:DOM0事件就是把一个方法赋值给一个元素的事件处理程序属性，每个元素都有自己的事件处理程序属性，这些属性名称通常为小写，如onclick等，将这些属性的值设置为一个函数，就可以指定事件处理程序，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;li id  = &apos;btn&apos;&gt;1&lt;/li&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    let btn = document.querySelector(&apos;#btn&apos;);</span><br><span class="line">    btn.onclick = function showMessage()&#123;</span><br><span class="line">        console.log(this.id)</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这样处理，事件处理程序被认为是元素的方法，事件处理程序在元素的作用域下运行，this就是当前元素，所以点击button结果是：btn;<br>这样还有一个好处，我们可以删除事件处理程序，只需把元素的onclick属性赋为null即可。<br><strong>DOM2:</strong>DOM2事件定义了两个方法用于处理指定和删除事件处理程序的操作：</p>
+<ul>
+<li>addEventListener</li>
+<li>removeEventListener<br>所有的DOM节点都包含这两个方法，并且它们都接受三个参数：</li>
+</ul>
+<ol>
+<li>事件类型</li>
+<li>事件处理方法</li>
+<li>布尔参数，如果是true表示在捕获阶段调用事件处理程序，如果是false，则是在事件冒泡阶段处理<br>通过addEventListener添加的事件处理程序只能通过removeEventListener移除，移除时参数与添加的时候相同，这就意味着刚才我们添加的匿名函数无法移除，因为匿名函数虽然方法体一样，但是句柄却不相同，所以当我们有移除事件处理程序的时候可以这样写：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=&quot;btnClick&quot; type=&quot;button&quot; value=&quot;Click Here&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    var btnClick = document.getElementById(&apos;btnClick&apos;);</span><br><span class="line"></span><br><span class="line">    var handler=function() &#123;</span><br><span class="line">        alert(this.id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    btnClick.addEventListener(&apos;click&apos;, handler, false);</span><br><span class="line">    btnClick.removeEventListener(&apos;click&apos;, handler, false);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h4 id="attachEvent与addEventListener的区别？"><a href="#attachEvent与addEventListener的区别？" class="headerlink" title="attachEvent与addEventListener的区别？"></a>attachEvent与addEventListener的区别？</h4><ol>
+<li>参数个数不相同。这个最直观，addEventListener有三个参数，attachEvent只有两个，attachEvent添加的事件处理程序只能发生在冒泡阶段，addEventListener第三个参数可以决定添加的事件处理程序是在捕获阶段还是冒泡阶段处理（我们一般为了浏览器兼容性都设置为冒泡阶段）。</li>
+<li><strong> 第一个参数意义不同。</strong>addEventListener第一个参数是事件类型（比如click，load），而attachEvent第一个参数指明的是事件处理函数名称（onclick，onload）。<br>事件处理程序的作用域不相同。addEventListener的作用域是元素本身，this是指的触发元素，而attachEvent事件处理程序会在全局变量内运行，this是window，所以刚才例子才会返回undefined，而不是元素id。</li>
+<li>为一个事件添加多个事件处理程序时，执行顺序不同。addEventListener添加会按照添加顺序执行，而attachEvent添加多个事件处理程序时顺序无规律(添加的方法少的时候大多是按添加顺序的反顺序执行的，但是添加的多了就无规律了)，所以添加多个的时候，不依赖执行顺序的还好，若是依赖于函数执行顺序，最好自己处理，不要指望浏览器。</li>
+</ol>
+<hr>
+<h4 id="解释IE事件冒泡和DOM2事件传播机制？"><a href="#解释IE事件冒泡和DOM2事件传播机制？" class="headerlink" title="解释IE事件冒泡和DOM2事件传播机制？"></a>解释IE事件冒泡和DOM2事件传播机制？</h4><p><strong>IE事件冒泡:</strong>事件开始时由最具体的元素接收，然后逐级向上传播到较为不具体的元素，如下图：<br><img src="//video.jirengu.com/Fo3MeMe-P0hx17tybq6t6P1EPqZk" alt="事件冒泡模型"><br><strong>DOM2事件:</strong>DOM2级事件规定事件流包括三个阶段，事件捕获阶段，处于目标阶段，事件冒泡阶段，首先发生的是事件捕获，为截取事件提供机会，然后是实际目标接收事件，最后是冒泡阶段。如下图：</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="//video.jirengu.com/FkqZgZaEpycoAc4ogXqxX7JP1C7B" alt="DOM2事件流"></h2><h4 id="如何阻止事件冒泡？-如何阻止默认事件？"><a href="#如何阻止事件冒泡？-如何阻止默认事件？" class="headerlink" title="如何阻止事件冒泡？ 如何阻止默认事件？"></a>如何阻止事件冒泡？ 如何阻止默认事件？</h4><p>stopPropagation()取消事件进一步捕获或者冒泡;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let btn = document.querySelector(&apos;#btn&apos;);</span><br><span class="line">        let handler = function(e)&#123;</span><br><span class="line">            console.log(e.type)</span><br><span class="line">            e.stopPropagation();</span><br><span class="line">        &#125;</span><br><span class="line">        document.body.addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">            console.log(1)</span><br><span class="line">        &#125;)</span><br><span class="line">        btn.addEventListener(&apos;click&apos;,handler)</span><br></pre></td></tr></table></figure></p>
+<p><strong>阻止默认事件：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.querySelector(&apos;#btn&apos;).onclick = function (e) &#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容"><a href="#有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容" class="headerlink" title="有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容"></a>有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;ct&quot;&gt;</span><br><span class="line">    &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"> let printNum = document.querySelector(&apos;.ct&apos;);</span><br><span class="line">        printNum.addEventListener(&apos;click&apos;,function(e)&#123;</span><br><span class="line">            if(e.target.tagName.toLowerCase() ===&apos;li&apos;)&#123;</span><br><span class="line">                console.log(e.target.innerText)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;,false)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="补全代码，要求："><a href="#补全代码，要求：" class="headerlink" title="补全代码，要求："></a>补全代码，要求：</h4><p>当点击按钮开头添加时在<li>这里是</li>元素前添加一个新元素，内容为用户输入的非空字符串；当点击结尾添加时在最后一个 li 元素后添加用户输入的非空字符串.<br>当点击每一个元素li时控制台展示该元素的文本内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;ct&quot;&gt;</span><br><span class="line">        &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;3&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;input class=&quot;ipt-add-content&quot; placeholder=&quot;添加内容&quot; /&gt;</span><br><span class="line">    &lt;button id=&quot;btn-add-start&quot;&gt;开头添加&lt;/button&gt;</span><br><span class="line">    &lt;button id=&quot;btn-add-end&quot;&gt;结尾添加&lt;/button&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        let addStart = document.querySelector(&apos;#btn-add-start&apos;);</span><br><span class="line">        let addEnd = document.querySelector(&apos;#btn-add-end&apos;);</span><br><span class="line">        let addContent = document.querySelector(&apos;.ipt-add-content&apos;);</span><br><span class="line">        let printContent = document.querySelector(&apos;.ct&apos;);</span><br><span class="line">        addStart.addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">            let firstChild = document.getElementsByTagName(&apos;li&apos;)[0];</span><br><span class="line">            if(addContent.value !=&apos;&apos;)&#123;</span><br><span class="line">                let newLi = document.createElement(&apos;li&apos;)</span><br><span class="line">                newLi.innerText = addContent.value</span><br><span class="line">                printContent.insertBefore(newLi,firstChild)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        addEnd.addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">            if(addContent.value != &apos;&apos;)&#123;</span><br><span class="line">                let newLi = document.createElement(&apos;li&apos;);</span><br><span class="line">                newLi.innerText = addContent.value;</span><br><span class="line">                printContent.appendChild(newLi)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        printContent.addEventListener(&apos;click&apos;,function(e)&#123;</span><br><span class="line">            if(e.target.tagName.toLowerCase() === &apos;li&apos;)&#123;</span><br><span class="line">                console.log(e.target.innerText)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。"><a href="#补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。" class="headerlink" title="补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。"></a>补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul class=&quot;ct&quot;&gt;</span><br><span class="line">        &lt;li data-img=&quot;http://f2.topitme.com/2/b9/71/112660598401871b92l.jpg&quot;&gt;鼠标放置查看图片1&lt;/li&gt;</span><br><span class="line">        &lt;li data-img=&quot;http://pic3.16pic.com/00/52/03/16pic_5203046_b.jpg&quot;&gt;鼠标放置查看图片2&lt;/li&gt;</span><br><span class="line">        &lt;li data-img=&quot;http://pic.58pic.com/58pic/10/97/02/30a58PICH7N.jpg&quot;&gt;鼠标放置查看图片3&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;div class=&quot;img-preview&quot; &gt;&lt;/div&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        let ctImg = document.querySelector(&apos;.ct&apos;);</span><br><span class="line">        let imgPreview = document.querySelector(&apos;.img-preview&apos;)</span><br><span class="line">        ctImg.addEventListener(&apos;mouseover&apos;, function (e) &#123;</span><br><span class="line">            if (e.target.tagName.toLowerCase() === &apos;li&apos;)&#123;</span><br><span class="line">                let imgSrc = e.target.getAttribute(&apos;data-img&apos;)</span><br><span class="line">                imgPreview.innerHTML = &apos;&lt;img src = &quot;&apos;+ imgSrc +&apos;&quot;&gt;&apos;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/常见的设计模式/" rel="next" title="常见的设计模式">
+                <i class="fa fa-chevron-left"></i> 常见的设计模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTc2OS84MzMz"></div>
+    </div>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/avatar.JPG"
+                alt="Zhang Han" />
+            
+              <p class="site-author-name" itemprop="name">Zhang Han</p>
+              <p class="site-description motion-element" itemprop="description">zzz...</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhanghan0529" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-DOM0-事件和DOM2级在事件监听使用方式上有什么区别？"><span class="nav-number">1.</span> <span class="nav-text">1.DOM0 事件和DOM2级在事件监听使用方式上有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attachEvent与addEventListener的区别？"><span class="nav-number">2.</span> <span class="nav-text">attachEvent与addEventListener的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解释IE事件冒泡和DOM2事件传播机制？"><span class="nav-number">3.</span> <span class="nav-text">解释IE事件冒泡和DOM2事件传播机制？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何阻止事件冒泡？-如何阻止默认事件？"><span class="nav-number">1.</span> <span class="nav-text">如何阻止事件冒泡？ 如何阻止默认事件？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容"><span class="nav-number">2.</span> <span class="nav-text">有如下代码，要求当点击每一个元素li时控制台展示该元素的文本内容。不考虑兼容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补全代码，要求："><span class="nav-number">3.</span> <span class="nav-text">补全代码，要求：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。"><span class="nav-number">4.</span> <span class="nav-text">补全代码，要求：当鼠标放置在li元素上，会在img-preview里展示当前li元素的data-img对应的图片。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart" aria-hidden="true"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Han</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
