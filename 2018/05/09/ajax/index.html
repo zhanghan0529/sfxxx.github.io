@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="杂七杂八," />
+  <meta name="keywords" content="前端,JavaScript," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Hello World.">
-<meta name="keywords" content="杂七杂八">
+<meta name="description" content="ajax 是什么？有什么作用？含义：AJAX = 异步 JavaScript 和 XML。AJAX 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。作用：用户体验会更好。缺点：  ajax干掉了back按钮，即对浏览器后退机制的破坏。后退按钮是一个标准的web站点的重要功能，但">
+<meta name="keywords" content="前端,JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://sfxxx.me/blog/2017/11/09/World/index.html">
+<meta property="og:title" content="ajax实践">
+<meta property="og:url" content="http://sfxxx.me/blog/2018/05/09/ajax/index.html">
 <meta property="og:site_name" content="Zh&#39;s Blog">
-<meta property="og:description" content="Hello World.">
+<meta property="og:description" content="ajax 是什么？有什么作用？含义：AJAX = 异步 JavaScript 和 XML。AJAX 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。作用：用户体验会更好。缺点：  ajax干掉了back按钮，即对浏览器后退机制的破坏。后退按钮是一个标准的web站点的重要功能，但">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T09:41:40.000Z">
+<meta property="og:updated_time" content="2018-05-09T06:54:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Hello World.">
+<meta name="twitter:title" content="ajax实践">
+<meta name="twitter:description" content="ajax 是什么？有什么作用？含义：AJAX = 异步 JavaScript 和 XML。AJAX 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。作用：用户体验会更好。缺点：  ajax干掉了back按钮，即对浏览器后退机制的破坏。后退按钮是一个标准的web站点的重要功能，但">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://sfxxx.me/blog/2017/11/09/World/"/>
+  <link rel="canonical" href="http://sfxxx.me/blog/2018/05/09/ajax/"/>
 
 
 
 
 
-  <title>Hello World | Zh's Blog</title>
+  <title>ajax实践 | Zh's Blog</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://sfxxx.me/blog/2017/11/09/World/">
+    <link itemprop="mainEntityOfPage" href="http://sfxxx.me/blog/2018/05/09/ajax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Han">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">ajax实践</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-09T09:44:53+08:00">
-                2017-11-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T14:51:22+08:00">
+                2018-05-09
               </time>
             
 
@@ -315,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂七杂八/" itemprop="url" rel="index">
-                    <span itemprop="name">杂七杂八</span>
+                  <a href="/categories/前端开发/" itemprop="url" rel="index">
+                    <span itemprop="name">前端开发</span>
                   </a>
                 </span>
 
@@ -357,7 +357,25 @@
       
 
       
-        <center>Hello World.</center>
+        <h4 id="ajax-是什么？有什么作用？"><a href="#ajax-是什么？有什么作用？" class="headerlink" title="ajax 是什么？有什么作用？"></a>ajax 是什么？有什么作用？</h4><p>含义：AJAX = 异步 JavaScript 和 XML。AJAX 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。<br>作用：用户体验会更好。<br>缺点：</p>
+<ol>
+<li>ajax干掉了back按钮，即对浏览器后退机制的破坏。后退按钮是一个标准的web站点的重要功能，但是它没法和js进行很好的合作。这是ajax所带来的一个比较严重的问题，因为用户往往是希望能够通过后退来取消前一次操作的。那么对于这个问题有没有办法？答案是肯定的，用过Gmail的知道，Gmail下面采用的ajax技术解决了这个问题，在Gmail下面是可以后退的，但是，它也并不能改变ajax的机制，它只是采用的一个比较笨但是有效的办法，即用户单击后退按钮访问历史记录时，通过创建或使用一个隐藏的IFRAME来重现页面上的变更。（例如，当用户在Google Maps中单击后退时，它在一个隐藏的IFRAME中进行搜索，然后将搜索结果反映到Ajax元素上，以便将应用程序状态恢复到当时的状态。）但是，虽然说这个问题是可以解决的，但是它所带来的开发成本是非常高的，和ajax框架所要求的快速开发是相背离的。这是ajax所带来的一个非常严重的问题。</li>
+<li>安全问题技术同时也对IT企业带来了新的安全威胁，ajax技术就如同对企业数据建立了一个直接通道。这使得开发者在不经意间会暴露比以前更多的数据和服务器逻辑。ajax的逻辑可以对客户端的安全扫描技术隐藏起来，允许黑客从远端服务器上建立新的攻击。还有ajax也难以避免一些已知的安全弱点，诸如跨站点脚步攻击、SQL注入攻击和基于credentials的安全漏洞等。</li>
+<li>对搜索引擎的支持比较弱。</li>
+<li>破坏了程序的异常机制。至少从目前看来，像ajax.dll，ajaxpro.dll这些ajax框架是会破坏程序的异常机制的。</li>
+<li>另外，像其他方面的一些问题，比如说违背了url和资源定位的初衷。例如，有一个url地址，如果采用了ajax技术，也许在该url地址下面看到的和别人在这个url地址下看到的内容是不同的。这个和资源定位的初衷是相背离的。</li>
+<li>一些手持设备（如手机、PDA等）现在还不能很好的支持ajax，如手机的浏览器上打开采用ajax技术的网站时，它目前是不支持的。</li>
+</ol>
+<hr>
+<h4 id="前后端开发联调需要注意哪些事情？后端接口完成前如何-mock-数据"><a href="#前后端开发联调需要注意哪些事情？后端接口完成前如何-mock-数据" class="headerlink" title="前后端开发联调需要注意哪些事情？后端接口完成前如何 mock 数据"></a>前后端开发联调需要注意哪些事情？后端接口完成前如何 mock 数据</h4><ol>
+<li>接口叫什么？接口名称，统一命名，定制规范，甚至拟定命名表。</li>
+<li>接口传什么？数据类型确定，数据大小等限制的确定。</li>
+<li>接口的相关参数： 服务器？端口？方法？请求数据的一些限制？<br>按照上述确认后的版本严格执行<br>前端人员可以自己使用服务器框架搭建一个模拟服务器环境，比如使用express&amp;nodejs或者使用xampp，更简单的办法是使用server-mock。</li>
+</ol>
+<hr>
+<h4 id="点击按钮，使用-ajax-获取数据，如何在数据到来之前防止重复点击"><a href="#点击按钮，使用-ajax-获取数据，如何在数据到来之前防止重复点击" class="headerlink" title="点击按钮，使用 ajax 获取数据，如何在数据到来之前防止重复点击?"></a>点击按钮，使用 ajax 获取数据，如何在数据到来之前防止重复点击?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var isLoading = true;</span><br><span class="line">        btn.addEventListener(&quot;click&quot;, function () &#123;</span><br><span class="line">            if (!isLoading) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            var xhr = new XMLHttpRequest();</span><br><span class="line">            xhr.onreadystatechange = function () &#123;</span><br><span class="line">                if (xhr.readyState === 4) &#123;</span><br><span class="line">                    if (xhr.status === 200 || xhr.status === 304) &#123;</span><br><span class="line">                      ...</span><br><span class="line">                        &#125;</span><br><span class="line">                      ...</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                       ...</span><br><span class="line">                    &#125;</span><br><span class="line">                    isLoading = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            xhr.open(&quot;get&quot;, &quot;/getInfo?index=&quot; + indexNum + &quot;&amp;length=5&quot;, true);</span><br><span class="line">            xhr.send();</span><br><span class="line">            isLoading = false;</span><br><span class="line">        &#125;) //设置一个全局变量模拟锁为true；点击后数据到来前为赋值为false 等数据到了然后赋值为true</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="实现加载更多的功能"><a href="#实现加载更多的功能" class="headerlink" title="实现加载更多的功能"></a>实现加载更多的功能</h4><p>代码地址：<a href="https://github.com/zhanghan0529/ajax-loadmore/tree/master/%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A" target="_blank" rel="external">https://github.com/zhanghan0529/ajax-loadmore/tree/master/%E5%8A%A0%E8%BD%BD%E6%9B%B4%E5%A4%9A</a></p>
 
       
     </div>
@@ -375,7 +393,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/杂七杂八/" rel="tag"><i class="fa fa-tag"></i> 杂七杂八</a>
+            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
           
         </div>
       
@@ -388,15 +408,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/05/09/闭包/" rel="next" title="闭包 & 定时器 & BOM">
+                <i class="fa fa-chevron-left"></i> 闭包 & 定时器 & BOM
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/10/网易云音乐客户端/" rel="prev" title="仿网易云音乐客户端">
-                仿网易云音乐客户端 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -456,8 +476,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -531,6 +560,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-是什么？有什么作用？"><span class="nav-number">1.</span> <span class="nav-text">ajax 是什么？有什么作用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前后端开发联调需要注意哪些事情？后端接口完成前如何-mock-数据"><span class="nav-number">2.</span> <span class="nav-text">前后端开发联调需要注意哪些事情？后端接口完成前如何 mock 数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#点击按钮，使用-ajax-获取数据，如何在数据到来之前防止重复点击"><span class="nav-number">3.</span> <span class="nav-text">点击按钮，使用 ajax 获取数据，如何在数据到来之前防止重复点击?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现加载更多的功能"><span class="nav-number">4.</span> <span class="nav-text">实现加载更多的功能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
